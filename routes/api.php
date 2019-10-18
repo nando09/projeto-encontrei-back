@@ -21,4 +21,4 @@ use Illuminate\Support\Facades\Validator;
 
 Route::post('/register', "UserController@register");
 Route::post('/login', "UserController@login");
-Route::middleware('auth:api')->get('/users', 'UserController@users');
+Route::middleware('auth:api')->get('/users/{id}', 'UserController@users');
