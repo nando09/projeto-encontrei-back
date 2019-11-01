@@ -16,18 +16,18 @@ class CreateProductsTable extends Migration
 		Schema::create('products', function (Blueprint $table) {
 			$table->bigIncrements('id');
 			$table->string('nome');
-			$table->string('descricao');
-			$table->string('formato');
-			$table->enum('tipo_de_cobranca', ['Única', 'Recorrente']);
-			$table->enum('tipo_de_precificacao', [1, 2]);
 			$table->float('preco', 10, 2);
-			$table->enum('disponivel', ['sim', 'não']);
-			$table->bigInteger('quantidade_max');
-			$table->bigInteger('garantia');
-			$table->string('email');
-			$table->string('categoria');
-			$table->enum('confirmar_dados', [1, 0]);
-			$table->enum('gratis', [1, 0]);
+			$table->string('descricao')->nullable();
+			$table->string('formato')->nullable();
+			$table->enum('tipo_de_cobranca', ['Única', 'Recorrente'])->nullable();
+			$table->enum('tipo_de_precificacao', [1, 2])->nullable();
+			$table->enum('disponivel', ['sim', 'não'])->nullable();
+			$table->bigInteger('quantidade_max')->nullable();
+			$table->bigInteger('garantia')->nullable();
+			$table->string('email')->nullable();
+			$table->string('categoria')->nullable();
+			$table->enum('confirmar_dados', [1, 0])->nullable();
+			$table->enum('gratis', [1, 0])->nullable();
 			$table->timestamps();
 		});
 	}
