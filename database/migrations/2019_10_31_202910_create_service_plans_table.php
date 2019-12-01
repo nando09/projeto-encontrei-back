@@ -14,6 +14,7 @@ class CreateServicePlansTable extends Migration
     public function up()
     {
         Schema::create('service_plans', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('nome');
             $table->timestamps();

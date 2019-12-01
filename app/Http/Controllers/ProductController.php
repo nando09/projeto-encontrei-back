@@ -19,13 +19,10 @@ class ProductController extends Controller
 		$validator = Validator::make($data, [
 			'nome' => ['required', 'string', 'max:255'],
 			'preco' => ['required', 'string', 'max:255'],
-			'email' => ['required', 'email', 'max:255'],
 		],
 		[
 			'nome.required'	=>	"Campo 'Nome' obrigatório!",
 			'preco.required'	=>	"Campo 'Preço' obrigatório!",
-			'email.required'	=>	"Campo 'Email' obrigatório!",
-			'email.email'	=>	"Email não é válido!",
 		]);
 
 		if ($validator->fails()){
