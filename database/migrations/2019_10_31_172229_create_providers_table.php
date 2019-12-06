@@ -14,6 +14,7 @@ class CreateProvidersTable extends Migration
 	public function up()
 	{
 		Schema::create('providers', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
 			$table->bigIncrements('id');
 			$table->string('nome');
 			$table->string('email');
@@ -21,8 +22,7 @@ class CreateProvidersTable extends Migration
 			$table->string('endereco2')->nullable();
 			$table->string('cidade')->nullable();
 			$table->string('estado')->nullable();
-			$table->bigInteger('cep')->nullable();
-			$table->enum('confirmar_dados', [1, 0]);
+			$table->string('cep')->nullable();
 			$table->timestamps();
 		});
 	}
