@@ -18,6 +18,12 @@ class CreateProductsTable extends Migration
 			$table->bigIncrements('id');
 			$table->string('nome');
 			$table->decimal('preco', 10, 2);
+
+            $table->unsignedBigInteger('provider_id');
+            $table->foreign('provider_id')
+                ->references('id')
+                ->on('providers');
+
 			$table->string('image')->default('product/produto-sem-imagem.png');
 			$table->timestamps();
 		});

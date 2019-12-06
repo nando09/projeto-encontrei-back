@@ -20,7 +20,7 @@ class ServicePlanController extends Controller
 			'nome' => ['required', 'string', 'max:255'],
 		],
 		[
-			'nome.required'	=>	"Campo 'Plano de Serviço' obrigatório!"
+			'nome.required'			=>	"Campo nome é obrigatório!",
 		]);
 
 		if ($validator->fails()){
@@ -38,11 +38,12 @@ class ServicePlanController extends Controller
 	public function update(Request $request, $id)
 	{
 		$data = $request->all();
+
 		$validator = Validator::make($data, [
 			'nome' => ['required', 'string', 'max:255'],
 		],
 		[
-			'nome.required'	=>	'Campo Plano de Serviço obrigatório!'
+			'nome.required'			=>	"Campo nome é obrigatório!",
 		]);
 
 		if ($validator->fails()){
