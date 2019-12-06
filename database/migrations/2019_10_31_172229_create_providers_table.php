@@ -16,13 +16,19 @@ class CreateProvidersTable extends Migration
 		Schema::create('providers', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 			$table->bigIncrements('id');
-			$table->string('nome');
-			$table->string('email');
-			$table->string('endereco')->nullable();
-			$table->string('endereco2')->nullable();
-			$table->string('cidade')->nullable();
-			$table->string('estado')->nullable();
-			$table->string('cep')->nullable();
+            $table->string('nomefantasia');
+            $table->string('email');
+            $table->string('cep')->nullable();
+            $table->string('endereco')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('telefone');
+            $table->string('site');
+            $table->string('whatsapp')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('descricao');
 			$table->timestamps();
 		});
 	}
