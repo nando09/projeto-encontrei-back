@@ -17,6 +17,8 @@ class CreateServicePlansTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('nome');
+            $table->decimal('preco', 10, 2);
+            $table->string('descricao')->nullable();
             $table->timestamps();
         });
     }

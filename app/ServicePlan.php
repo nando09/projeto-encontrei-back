@@ -8,5 +8,7 @@ class ServicePlan extends Model
 {
 	protected $fillable = [
 		'nome',
+		'preco',
+		'descricao'
 	];
 }

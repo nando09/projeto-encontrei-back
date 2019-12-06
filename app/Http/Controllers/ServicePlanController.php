@@ -17,10 +17,13 @@ class ServicePlanController extends Controller
 	{
 		$data = $request->all();
 		$validator = Validator::make($data, [
-			'nome' => ['required', 'string', 'max:255'],
+			'nome'	=>	['required', 'string', 'max:255'],
+			'preco'	=>	['required', 'numeric']
 		],
 		[
-			'nome.required'			=>	"Campo nome é obrigatório!",
+			'nome.required'		=>	"Campo nome é obrigatório!",
+			'preco.required'	=>	"Campo preço é obrigatório!",
+			'preco.numeric'		=>	"Campo preço dinheiro!",
 		]);
 
 		if ($validator->fails()){
@@ -40,10 +43,13 @@ class ServicePlanController extends Controller
 		$data = $request->all();
 
 		$validator = Validator::make($data, [
-			'nome' => ['required', 'string', 'max:255'],
+			'nome'	=>	['required', 'string', 'max:255'],
+			'preco'	=>	['required', 'numeric']
 		],
 		[
-			'nome.required'			=>	"Campo nome é obrigatório!",
+			'nome.required'		=>	"Campo nome é obrigatório!",
+			'preco.required'	=>	"Campo preço é obrigatório!",
+			'preco.numeric'		=>	"Campo preço dinheiro!",
 		]);
 
 		if ($validator->fails()){
