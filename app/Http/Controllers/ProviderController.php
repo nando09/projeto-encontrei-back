@@ -18,19 +18,21 @@ class ProviderController extends Controller
 		$data = $request->all();
 
 		$validator = Validator::make($data, [
-			'nomefantasia'	=> ['required', 'string', 'max:255'],
-			'email'			=> ['required', 'email', 'max:255', ''],
-			'telefone'		=> ['required', 'string', 'max:255'],
-			'site'			=> ['required', 'string', 'max:255'],
-			'descricao'		=> ['required', 'string', 'max:255'],
+			'nomefantasia'		=> ['required', 'string', 'max:255'],
+			'nome_responsavel'	=> ['required', 'string', 'max:255'],
+			'razao_social'		=> ['required', 'string', 'max:255'],
+			'email'				=> ['required', 'email', 'max:255', 'unique:providers'],
+			'telefone'			=> ['required', 'string', 'max:255'],
+			'descricao'			=> ['required', 'string', 'max:255'],
 		],
 		[
-			'nomefantasia.required'	=>	"Campo nome é obrigatório!",
-			'email.required'		=>	"Campo email obrigatório!",
-			'email.email'			=>	"E-mail não esta certo obrigatório!",
-			'telefone.required'		=>	"Campo telefone obrigatório!",
-			'site.required'			=>	"Campo site obrigatório!",
-			'descricao.required'	=>	"Campo descriçção obrigatório!"
+			'nomefantasia.required'		=>	"Campo nome é obrigatório!",
+			'nome_responsavel.required'	=>	"Campo nome responsável é obrigatório!",
+			'razao_social.required'		=>	"Campo nome responsável é obrigatório!",
+			'email.required'			=>	"Campo email obrigatório!",
+			'email.email'				=>	"E-mail não esta certo obrigatório!",
+			'telefone.required'			=>	"Campo telefone obrigatório!",
+			'descricao.required'		=>	"Campo descriçção obrigatório!"
 		]);
 
 		if ($validator->fails()){
