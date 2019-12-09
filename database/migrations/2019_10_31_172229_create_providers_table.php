@@ -16,19 +16,25 @@ class CreateProvidersTable extends Migration
 		Schema::create('providers', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 			$table->bigIncrements('id');
-            $table->string('nomefantasia');
-            $table->string('email');
-            $table->string('cep')->nullable();
-            $table->string('endereco')->nullable();
-            $table->string('bairro')->nullable();
-            $table->string('cidade')->nullable();
-            $table->string('estado')->nullable();
-            $table->string('telefone');
-            $table->string('site');
-            $table->string('whatsapp')->nullable();
-            $table->string('facebook')->nullable();
-            $table->string('instagram')->nullable();
-            $table->string('descricao');
+			$table->string('nome')->nullable();
+			$table->string('email')->unique();
+			$table->string('nome_responsavel')->nullable();
+			$table->string('razao_social')->nullable();
+			$table->string('nome_fantasia')->nullable();
+			$table->string('cnpj')->nullable();
+			$table->string('telefone')->nullable();
+			$table->string('whatsapp')->nullable();
+			$table->string('facebook')->nullable();
+			$table->string('instagram')->nullable();
+			$table->string('site')->nullable();
+			$table->string('descricao')->nullable();
+			$table->string('cep')->nullable();
+			$table->string('endereco')->nullable();
+			$table->string('numero')->nullable();
+			$table->string('complemento')->nullable();
+			$table->string('bairro')->nullable();
+			$table->string('cidade')->nullable();
+			$table->string('estado')->nullable();
 			$table->timestamps();
 		});
 	}
