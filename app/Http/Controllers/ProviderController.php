@@ -39,7 +39,7 @@ class ProviderController extends Controller
 			'email.required'			=>	"Campo email obrigatório!",
 			'email.email'				=>	"E-mail não esta certo obrigatório!",
 			'telefone.required'			=>	"Campo telefone obrigatório!",
-			'descricao.required'		=>	"Campo descriçção obrigatório!"
+			'descricao.required'		=>	"Campo descrição obrigatório!",
 			'cep.required'				=>	"Campo cep obrigatório!",
 			'endereco.required'			=>	"Campo endereco obrigatório!",
 			'numero.required'			=>	"Campo numero obrigatório!",
@@ -82,7 +82,7 @@ class ProviderController extends Controller
 			'nome_responsavel.required'	=>	"Campo nome responsável é obrigatório!",
 			'razao_social.required'		=>	"Campo nome responsável é obrigatório!",
 			'telefone.required'			=>	"Campo telefone obrigatório!",
-			'descricao.required'		=>	"Campo descriçção obrigatório!"
+			'descricao.required'		=>	"Campo descrição obrigatório!",
 			'cep.required'				=>	"Campo cep obrigatório!",
 			'endereco.required'			=>	"Campo endereco obrigatório!",
 			'numero.required'			=>	"Campo numero obrigatório!",
