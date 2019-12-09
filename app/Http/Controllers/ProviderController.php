@@ -24,6 +24,13 @@ class ProviderController extends Controller
 			'email'				=> ['required', 'email', 'max:255', 'unique:providers'],
 			'telefone'			=> ['required', 'string', 'max:255'],
 			'descricao'			=> ['required', 'string', 'max:255'],
+
+			'cep'				=> ['required', 'string', 'max:255'],
+			'endereco'			=> ['required', 'string', 'max:255'],
+			'numero'			=> ['required', 'string', 'max:255'],
+			'bairro'			=> ['required', 'string', 'max:255'],
+			'cidade'			=> ['required', 'string', 'max:255'],
+			'estado'			=> ['required', 'string', 'max:255'],
 		],
 		[
 			'nomefantasia.required'		=>	"Campo nome é obrigatório!",
@@ -33,6 +40,12 @@ class ProviderController extends Controller
 			'email.email'				=>	"E-mail não esta certo obrigatório!",
 			'telefone.required'			=>	"Campo telefone obrigatório!",
 			'descricao.required'		=>	"Campo descriçção obrigatório!"
+			'cep.required'				=>	"Campo cep obrigatório!",
+			'endereco.required'			=>	"Campo endereco obrigatório!",
+			'numero.required'			=>	"Campo numero obrigatório!",
+			'bairro.required'			=>	"Campo bairro obrigatório!",
+			'cidade.required'			=>	"Campo cidade obrigatório!",
+			'estado.required'			=>	"Campo estado obrigatório!",
 		]);
 
 		if ($validator->fails()){
@@ -51,19 +64,31 @@ class ProviderController extends Controller
 	{
 		$data = $request->all();
 		$validator = Validator::make($data, [
-			'nomefantasia'	=> ['required', 'string', 'max:255'],
-			'email'			=> ['required', 'email', 'max:255'],
-			'telefone'		=> ['required', 'string', 'max:255'],
-			'site'			=> ['required', 'string', 'max:255'],
-			'descricao'		=> ['required', 'string', 'max:255'],
+			'nomefantasia'		=> ['required', 'string', 'max:255'],
+			'nome_responsavel'	=> ['required', 'string', 'max:255'],
+			'razao_social'		=> ['required', 'string', 'max:255'],
+			'telefone'			=> ['required', 'string', 'max:255'],
+			'descricao'			=> ['required', 'string', 'max:255'],
+
+			'cep'				=> ['required', 'string', 'max:255'],
+			'endereco'			=> ['required', 'string', 'max:255'],
+			'numero'			=> ['required', 'string', 'max:255'],
+			'bairro'			=> ['required', 'string', 'max:255'],
+			'cidade'			=> ['required', 'string', 'max:255'],
+			'estado'			=> ['required', 'string', 'max:255'],
 		],
 		[
-			'nomefantasia.required'	=>	"Campo nome é obrigatório!",
-			'email.required'		=>	"Campo email obrigatório!",
-			'email.email'			=>	"E-mail não esta certo obrigatório!",
-			'telefone.required'		=>	"Campo telefone obrigatório!",
-			'site.required'			=>	"Campo site obrigatório!",
-			'descricao.required'	=>	"Campo descriçção obrigatório!"
+			'nomefantasia.required'		=>	"Campo nome é obrigatório!",
+			'nome_responsavel.required'	=>	"Campo nome responsável é obrigatório!",
+			'razao_social.required'		=>	"Campo nome responsável é obrigatório!",
+			'telefone.required'			=>	"Campo telefone obrigatório!",
+			'descricao.required'		=>	"Campo descriçção obrigatório!"
+			'cep.required'				=>	"Campo cep obrigatório!",
+			'endereco.required'			=>	"Campo endereco obrigatório!",
+			'numero.required'			=>	"Campo numero obrigatório!",
+			'bairro.required'			=>	"Campo bairro obrigatório!",
+			'cidade.required'			=>	"Campo cidade obrigatório!",
+			'estado.required'			=>	"Campo estado obrigatório!",
 		]);
 
 		if ($validator->fails()){
