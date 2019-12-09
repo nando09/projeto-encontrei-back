@@ -33,9 +33,9 @@ class ProviderController extends Controller
 			'estado'			=> ['required', 'string', 'max:255'],
 		],
 		[
-			'nomefantasia.required'		=>	"Campo nome é obrigatório!",
+			'nomefantasia.required'		=>	"Campo nome fantasia é obrigatório!",
 			'nome_responsavel.required'	=>	"Campo nome responsável é obrigatório!",
-			'razao_social.required'		=>	"Campo nome responsável é obrigatório!",
+			'razao_social.required'		=>	"Campo razão social é obrigatório!",
 			'email.required'			=>	"Campo email obrigatório!",
 			'email.email'				=>	"E-mail não esta certo obrigatório!",
 			'telefone.required'			=>	"Campo telefone obrigatório!",
@@ -78,9 +78,9 @@ class ProviderController extends Controller
 			'estado'			=> ['required', 'string', 'max:255'],
 		],
 		[
-			'nomefantasia.required'		=>	"Campo nome é obrigatório!",
+			'nomefantasia.required'		=>	"Campo nome fantasia é obrigatório!",
 			'nome_responsavel.required'	=>	"Campo nome responsável é obrigatório!",
-			'razao_social.required'		=>	"Campo nome responsável é obrigatório!",
+			'razao_social.required'		=>	"Campo razão social é obrigatório!",
 			'telefone.required'			=>	"Campo telefone obrigatório!",
 			'descricao.required'		=>	"Campo descrição obrigatório!",
 			'cep.required'				=>	"Campo cep obrigatório!",
