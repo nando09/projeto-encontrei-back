@@ -18,7 +18,7 @@ class ProviderController extends Controller
 		$data = $request->all();
 
 		$validator = Validator::make($data, [
-			'nomefantasia'		=> ['required', 'string', 'max:255'],
+			'nome_fantasia'		=> ['required', 'string', 'max:255'],
 			'nome_responsavel'	=> ['required', 'string', 'max:255'],
 			'razao_social'		=> ['required', 'string', 'max:255'],
 			'email'				=> ['required', 'email', 'max:255', 'unique:providers'],
@@ -33,7 +33,7 @@ class ProviderController extends Controller
 			'estado'			=> ['required', 'string', 'max:255'],
 		],
 		[
-			'nomefantasia.required'		=>	"Campo nome fantasia é obrigatório!",
+			'nome_fantasia.required'		=>	"Campo nome fantasia é obrigatório!",
 			'nome_responsavel.required'	=>	"Campo nome responsável é obrigatório!",
 			'razao_social.required'		=>	"Campo razão social é obrigatório!",
 			'email.required'			=>	"Campo email obrigatório!",
@@ -64,7 +64,7 @@ class ProviderController extends Controller
 	{
 		$data = $request->all();
 		$validator = Validator::make($data, [
-			'nomefantasia'		=> ['required', 'string', 'max:255'],
+			'nome_fantasia'		=> ['required', 'string', 'max:255'],
 			'nome_responsavel'	=> ['required', 'string', 'max:255'],
 			'razao_social'		=> ['required', 'string', 'max:255'],
 			'telefone'			=> ['required', 'string', 'max:255'],
@@ -78,7 +78,7 @@ class ProviderController extends Controller
 			'estado'			=> ['required', 'string', 'max:255'],
 		],
 		[
-			'nomefantasia.required'		=>	"Campo nome fantasia é obrigatório!",
+			'nome_fantasia.required'		=>	"Campo nome fantasia é obrigatório!",
 			'nome_responsavel.required'	=>	"Campo nome responsável é obrigatório!",
 			'razao_social.required'		=>	"Campo razão social é obrigatório!",
 			'telefone.required'			=>	"Campo telefone obrigatório!",
