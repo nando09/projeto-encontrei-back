@@ -52,7 +52,7 @@ class ProviderController extends Controller
 			return $validator->errors();
 		}
 
-		return Provider::create($request->all());
+		return Provider::create($data);
 	}
 
 	public function show($id)
