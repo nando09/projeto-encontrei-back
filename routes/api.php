@@ -27,4 +27,5 @@ Route::middleware('auth:api')->group(function() {
 	Route::apiResource('/prestador', "ProviderController");
 	Route::apiResource('/produto', "ProductController");
 	Route::apiResource('/plano-servico', "ServicePlanController");
+	Route::get('/productsProvider/{id}', "ProductController@productsProvider");
 });

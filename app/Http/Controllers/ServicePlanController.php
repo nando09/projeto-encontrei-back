@@ -16,6 +16,9 @@ class ServicePlanController extends Controller
 	public function store(Request $request)
 	{
 		$data = $request->all();
+		$data['preco'] = str_replace(".", "", $data['preco']);
+		$data['preco'] = str_replace(",", ".", $data['preco']);
+
 		$validator = Validator::make($data, [
 			'nome'	=>	['required', 'string', 'max:255'],
 			'preco'	=>	['required', 'numeric']
@@ -30,7 +33,7 @@ class ServicePlanController extends Controller
 			return $validator->errors();
 		}
 
-		return ServicePlan::create($request->all());
+		return ServicePlan::create($data);
 	}
 
 	public function show($id)
@@ -41,6 +44,8 @@ class ServicePlanController extends Controller
 	public function update(Request $request, $id)
 	{
 		$data = $request->all();
+		$data['preco'] = str_replace(".", "", $data['preco']);
+		$data['preco'] = str_replace(",", ".", $data['preco']);
 
 		$validator = Validator::make($data, [
 			'nome'	=>	['required', 'string', 'max:255'],
