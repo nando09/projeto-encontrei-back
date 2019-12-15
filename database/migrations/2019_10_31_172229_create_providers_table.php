@@ -16,8 +16,6 @@ class CreateProvidersTable extends Migration
 		Schema::create('providers', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 			$table->bigIncrements('id');
-			$table->string('nome')->nullable();
-			$table->string('email')->unique();
 			$table->string('nome_responsavel');
 			$table->string('razao_social');
 			$table->string('nome_fantasia');
@@ -35,6 +33,18 @@ class CreateProvidersTable extends Migration
 			$table->string('bairro')->nullable();
 			$table->string('cidade')->nullable();
 			$table->string('estado')->nullable();
+
+            $table->unsignedBigInteger('service_plan_id')->nullable();
+            $table->foreign('service_plan_id')
+                ->references('id')
+                ->on('service_plans');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
 			$table->timestamps();
 		});
 	}

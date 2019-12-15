@@ -18,10 +18,18 @@ use Illuminate\Support\Facades\Validator;
 |
 */
 
+Route::middleware('auth:api')->get('/users/{id}', 'UserController@users');
 
 Route::post('/register', "UserController@register");
 Route::post('/login', "UserController@login");
-Route::middleware('auth:api')->get('/users/{id}', 'UserController@users');
+
+Route::post('/register_web', "UserController@registerWeb");
+Route::post('/login_web', "UserController@loginWeb");
+
+Route::post('/register_app', "UserController@registerApp");
+Route::post('/login_app', "UserController@loginApp");
+
+Route::get('/mercadoPago', "MercadoPagamento@ver");
 
 Route::middleware('auth:api')->group(function() {
 	Route::apiResource('/prestador', "ProviderController");
