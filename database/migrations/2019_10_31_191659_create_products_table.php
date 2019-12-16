@@ -22,7 +22,8 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('provider_id');
             $table->foreign('provider_id')
                 ->references('id')
-                ->on('providers');
+                ->on('providers')
+                ->onDelete('cascade');
 
 			$table->string('image')->default('product/produto-sem-imagem.png');
 			$table->timestamps();

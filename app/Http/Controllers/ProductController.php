@@ -24,12 +24,15 @@ class ProductController extends Controller
 			'nome.required'	=>	"Campo 'Nome' obrigatório!",
 			'preco.required'	=>	"Campo 'Preço' obrigatório!",
 		]);
+		
+		$data['preco'] = str_replace(".", "", $data['preco']);
+		$data['preco'] = str_replace(",", ".", $data['preco']);
 
 		if ($validator->fails()){
 			return $validator->errors();
 		}
 
-		return Product::create($request->all());
+		return Product::create($data);
 	}
 
 	public function show($id)
@@ -40,6 +43,7 @@ class ProductController extends Controller
 	public function update(Request $request, $id)
 	{
 		$data = $request->all();
+// 		return $data;
 		$validator = Validator::make($data, [
 			'nome' => ['required', 'string', 'max:255'],
 		],
@@ -51,8 +55,11 @@ class ProductController extends Controller
 			return $validator->errors();
 		}
 
+		$data['preco'] = str_replace(".", "", $data['preco']);
+		$data['preco'] = str_replace(",", ".", $data['preco']);
+
 		$product = Product::findOrFail($id);
-		$product->update($request->all());
+		$product->update($data);
 		return $product;
 	}
 
@@ -61,5 +68,14 @@ class ProductController extends Controller
 		$product = Product::findOrFail($id);
 		$product->delete();
 		return $product;
+	}
+	
+	public function productsProvider($id){
+	   // return $id;
+	    $products = Product::where([
+	           ['provider_id', '=', $id]
+	   ])->get();
+	   
+	   return $products;
 	}
 }
