@@ -5,39 +5,61 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Product;
+use App\Image;
+use App\Http\Resources\ProdutoResource;
 
 class ProductController extends Controller
 {
 	public function index()
 	{
-		return Product::all();
+		$produto = Product::all();
+		return ProdutoResource::collection($produto);
 	}
 
 	public function store(Request $request)
 	{
 		$data = $request->all();
+
 		$validator = Validator::make($data, [
 			'nome' => ['required', 'string', 'max:255'],
-			'preco' => ['required', 'string', 'max:255'],
 		],
 		[
 			'nome.required'	=>	"Campo 'Nome' obrigatório!",
-			'preco.required'	=>	"Campo 'Preço' obrigatório!",
 		]);
-		
-		$data['preco'] = str_replace(".", "", $data['preco']);
-		$data['preco'] = str_replace(",", ".", $data['preco']);
 
 		if ($validator->fails()){
 			return $validator->errors();
 		}
 
-		return Product::create($data);
+        if(!isset($data['provider_id'])) {
+			$data['provider_id'] = auth()->user()->id;
+        }
+
+		$produto = Product::create($data);
+
+		$image = $request->file('image');
+		if ($image) {
+            foreach ($image as $key) {
+    			$nome = $key->store('products', 'public');
+    			Image::create([
+    			    'image'         =>  $nome,
+    			    'product_id'    =>  $produto->id,
+    			]);
+            }
+		}else{
+			Image::create([
+			    'product_id'    =>  $produto->id,
+			]);
+		}
+
+        return $this->show($produto->id);
 	}
 
 	public function show($id)
 	{
-		return Product::findOrFail($id);
+		$produto = Product::findOrFail($id);
+		$produto->images;
+		return $produto;
 	}
 
 	public function update(Request $request, $id)
@@ -48,15 +70,12 @@ class ProductController extends Controller
 			'nome' => ['required', 'string', 'max:255'],
 		],
 		[
-			'nome.required'	=>	"Campo 'Plano de Serviço' obrigatório!"
+			'nome.required'	=>	"Campo 'nome' �� obrigatorio!!"
 		]);
 
 		if ($validator->fails()){
 			return $validator->errors();
 		}
-
-		$data['preco'] = str_replace(".", "", $data['preco']);
-		$data['preco'] = str_replace(",", ".", $data['preco']);
 
 		$product = Product::findOrFail($id);
 		$product->update($data);
@@ -75,7 +94,8 @@ class ProductController extends Controller
 	    $products = Product::where([
 	           ['provider_id', '=', $id]
 	   ])->get();
-	   
+
+	   return ProdutoResource::collection($products);
 	   return $products;
 	}
 }

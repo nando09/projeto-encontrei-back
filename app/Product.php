@@ -8,7 +8,14 @@ class Product extends Model
 {
 	protected $fillable = [
 		'nome',
-		'preco',
 		'provider_id',
 	];
+
+	public function images(){
+	    return $this->hasMany(Image::class);
+	}
+
+	public function users(){
+	    return $this->belongsTo(User::class, 'provider_id');
+	}
 }

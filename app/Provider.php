@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Provider extends Model
 {
 	protected $fillable = [
+		'email',
 		'nome_responsavel',
 		'razao_social',
 		'nome_fantasia',
@@ -24,8 +25,11 @@ class Provider extends Model
 		'bairro',
 		'cidade',
 		'estado',
+		'user_id',
 	];
+
+	public function User(){
+		return $this->belongsTo(User::class);
+	}
+
 }
-
-
-
