@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('celular')->nullable();
+            $table->string('email');
             $table->enum('type', ['admin', 'app', 'web']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

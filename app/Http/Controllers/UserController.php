@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Http\Controllers\ProviderController;
 use App\Provider;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -44,11 +45,19 @@ class UserController extends Controller
 			return $validator->errors();
 		}
 
-		if (Auth::attempt(["email"=>$data['email'], "password"=>$data['password'], "type" => 'web'])){
+		if (Auth::attempt(["email"=>$data['email'], "password" =>$data['password'], "type" => 'web'])){
+			$provider = new ProviderController();
+			$user = auth()->user();
+			$user->token = $user->createToken($user->email)->accessToken;
+			$user->mais = $provider->show($user->id);
+
+			return $user;
+		}else if (Auth::attempt(["email"=>$data['email'], "password"=>$data['password'], "type" => 'admin'])){
 			$user = auth()->user();
 			$user->token = $user->createToken($user->email)->accessToken;
 			return $user;
 		}
+
 		return ["status" => false];
 	}
 
@@ -116,6 +125,12 @@ class UserController extends Controller
 			'type'		=>	'web',
 		]);
 
+		if ($user) {
+			Provider::create([
+				'user_id'		=>	$user->id,
+			]);
+		}
+
 		$user->token = $user->createToken($user->email)->accessToken;
 		return $user;
 	}
@@ -148,5 +163,15 @@ class UserController extends Controller
 	public function users($id){
 		$user = User::findOrFail($id);
 		return $user;
+	}
+
+	public function authent(){
+	    $id = auth()->user()->id;
+		$user = User::findOrFail($id);
+		return $user->type;
+	}
+
+	public function index(){
+	    return User::all();
 	}
 }

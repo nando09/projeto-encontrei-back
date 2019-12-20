@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServicePlansTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateServicePlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_plans', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
-            $table->decimal('preco', 10, 2);
-            $table->string('quantidade')->default(0);
-            $table->string('descricao')->nullable();
+			$table->string('image')->default('products/produto-sem-imagem.png');
+
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ class CreateServicePlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_plans');
+        Schema::dropIfExists('images');
     }
 }

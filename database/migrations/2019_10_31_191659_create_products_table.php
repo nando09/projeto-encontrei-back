@@ -17,7 +17,6 @@ class CreateProductsTable extends Migration
             $table->engine = 'InnoDB';
 			$table->bigIncrements('id');
 			$table->string('nome');
-			$table->decimal('preco', 10, 2);
 
             $table->unsignedBigInteger('provider_id');
             $table->foreign('provider_id')
@@ -25,7 +24,6 @@ class CreateProductsTable extends Migration
                 ->on('providers')
                 ->onDelete('cascade');
 
-			$table->string('image')->default('product/produto-sem-imagem.png');
 			$table->timestamps();
 		});
 	}

@@ -21,12 +21,15 @@ class ServicePlanController extends Controller
 
 		$validator = Validator::make($data, [
 			'nome'	=>	['required', 'string', 'max:255'],
-			'preco'	=>	['required', 'numeric']
+			'preco'	=>	['required', 'numeric'],
+			'quantidade'	=>	['required', 'numeric']
 		],
 		[
-			'nome.required'		=>	"Campo nome é obrigatório!",
-			'preco.required'	=>	"Campo preço é obrigatório!",
-			'preco.numeric'		=>	"Campo preço dinheiro!",
+			'nome.required'	    	=>	"Campo plano de serviço é obrigatório!",
+			'preco.required'	    =>	"Campo preço é obrigatório!",
+			'preco.numeric'		    =>	"Campo preço dinheiro!",
+			'quantidade.required'	=>	"Campo quantidade é obrigatório!",
+			'quantidade.numeric'	=>	"Campo quantidade dinheiro!",
 		]);
 
 		if ($validator->fails()){
@@ -49,12 +52,15 @@ class ServicePlanController extends Controller
 
 		$validator = Validator::make($data, [
 			'nome'	=>	['required', 'string', 'max:255'],
-			'preco'	=>	['required', 'numeric']
+			'preco'	=>	['required', 'numeric'],
+			'quantidade'	=>	['required', 'numeric']
 		],
 		[
-			'nome.required'		=>	"Campo nome é obrigatório!",
-			'preco.required'	=>	"Campo preço é obrigatório!",
-			'preco.numeric'		=>	"Campo preço dinheiro!",
+			'nome.required'	    	=>	"Campo plano de serviço é obrigatório!",
+			'preco.required'    	=>	"Campo preço é obrigatório!",
+			'preco.numeric'		    =>	"Campo preço dinheiro!",
+			'quantidade.required'	=>	"Campo quantidade é obrigatório!",
+			'quantidade.numeric'	=>	"Campo quantidade dinheiro!",
 		]);
 
 		if ($validator->fails()){
