@@ -127,6 +127,7 @@ class UserController extends Controller
 
 		if ($user) {
 			Provider::create([
+			    'id'            =>  $user->id,
 				'user_id'		=>	$user->id,
 			]);
 		}
