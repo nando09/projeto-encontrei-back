@@ -3,28 +3,54 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MercadoPago\SDK;
+use MercadoPago\Customer;
 use MercadoPago\Payment;
+use MercadoPago\Card;
 
 class MercadoPagamento extends Controller
 {
-	public function ver(){
-		SDK::setAccessToken("TEST-549350363018034-120914-b532aabf36877b9d6d38a4b137047a33-185694645");
+	// public function ver(){
+	public function ver(Request $request){
+		$id = auth()->user()->id;
+
+		$data = $request->all();
+		// return $data;
+		SDK::setAccessToken("TEST-549350363018034-122415-210d43ea3d012567456c0c78cbedc7fc-185694645");
 
 		$payment = new Payment();
 
-		$payment->transaction_amount = 141;
-		$payment->token = "72104f00cf91348bb793456f7b743071";
+		$payment->transaction_amount = $data['transaction_amount'];
+		$payment->token = $data['token'];
 		$payment->description = "Ergonomic Silk Shirt";
-		$payment->installments = 1;
-		$payment->payment_method_id = "visa";
+		$payment->installments = $data['installments'];
+		$payment->payment_method_id = $data['payment_method_id'];
 		$payment->payer = array(
-		  "email" => "larue.nienow@hotmail.com"
+		  "email" => $data['email']
 		);
 
 		$payment->save();
 
+		// if ($payment->status == 'approved') {
+		// 	$this->salvarCard($data['email'], $data['token']);
+		// }
+
 		return [
-			'status'	=>	$payment->status
+			'status'	=>	$payment->status,
+			'detail'	=>	$payment->status_detail,
+			'user_id'	=>	$id
 		];
+	}
+
+	private function salvarCard($email, $token){
+		SDK::setAccessToken("TEST-549350363018034-122415-210d43ea3d012567456c0c78cbedc7fc-185694645");
+
+		$customer = new Customer();
+		$customer->email = $email;
+		$customer->save();
+
+		$card = new Card();
+		$card->token = $token;
+		$card->customer_id = $customer->id();
+		$card->save();
 	}
 }
