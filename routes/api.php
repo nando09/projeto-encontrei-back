@@ -29,7 +29,11 @@ Route::post('/login_web', "UserController@loginWeb");
 Route::post('/register_app', "UserController@registerApp");
 Route::post('/login_app', "UserController@loginApp");
 
-Route::get('/mercadoPago', "MercadoPagamento@ver");
+// Route::get('/mercadoPago', "MercadoPagamento@ver");
+
+// Route::get('/mercadoPagoEmail', "MercadoPagamento@verEmail");
+
+
 Route::post('/geo', "ProviderController@geoLocal");
 Route::get('/productsProvider_app/{id}', "ProductController@productsProvider");
 
@@ -37,7 +41,6 @@ Route::get('/prestador_app', "ProviderController@index");
 
 Route::middleware('auth:api')->group(function() {
 	Route::post('/mercadoPago', "MercadoPagamento@ver");
-
 	Route::apiResource('/prestador', "ProviderController");
 	Route::apiResource('/produto', "ProductController");
 	Route::apiResource('/plano-servico', "ServicePlanController");
