@@ -35,6 +35,9 @@ Route::post('/login_app', "UserController@loginApp");
 
 
 Route::post('/geo', "ProviderController@geoLocal");
+Route::get('/productsProvider_app/{id}', "ProductController@productsProvider");
+
+Route::get('/prestador_app', "ProviderController@index");
 
 Route::middleware('auth:api')->group(function() {
 	Route::post('/mercadoPago', "MercadoPagamento@ver");
