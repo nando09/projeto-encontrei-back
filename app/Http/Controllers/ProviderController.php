@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\GeoController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProviderController extends Controller
 {
@@ -120,10 +121,11 @@ class ProviderController extends Controller
 		return $provi[0];
 	}
 
-	public function update(Request $request, $id)
+	public function updateUp(Request $request)
 	{
 		$id = Auth::user()->id;
 		$data = $request->all();
+		$image = $request->file('image');
 
 		$validator = Validator::make($data, [
 			'nome_fantasia'		=> ['required', 'string', 'max:255'],
@@ -187,7 +189,30 @@ class ProviderController extends Controller
 			'bairro'				=>	$data['bairro'],
 			'cidade'				=>	$data['cidade'],
 			'estado'				=>	$data['estado'],
+            'uteis_ini'			    =>	$data['uteis_ini'],
+            'uteis_fim'			    =>	$data['uteis_fim'],
+            'sabado_ini'			=>	$data['sabado_ini'],
+            'sabado_fim'			=>	$data['sabado_fim'],
+            'domingo_ini'			=>	$data['domingo_ini'],
+            'domingo_fim'			=>	$data['domingo_fim'],
+            'feriados_ini'			=>	$data['feriados_ini'],
+            'feriados_fim'			=>	$data['feriados_fim'],
 		]);
+
+
+		if ($image) {
+            if($provider[0]->photo != 'products/produto-sem-imagem.png'){
+        		Storage::disk('public')->delete($provider[0]->photo);
+            }
+
+            foreach ($image as $key) {
+    			$nome = $key->store('provider', 'public');
+        		$provider[0]->update([
+                    'photo' =>  $nome,
+        		]);
+
+            }
+		}
 
 		$user = auth()->user();
 		$user->token = $user->createToken($user->email)->accessToken;

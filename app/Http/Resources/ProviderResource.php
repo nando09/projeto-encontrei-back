@@ -36,6 +36,15 @@ class ProviderResource extends JsonResource
 			'bairro'				=>	$this->bairro,
 			'cidade'				=>	$this->cidade,
 			'estado'				=>	$this->estado,
+			'photo'					=>	$this->photo,
+			'uteis_ini'				=>	$this->uteis_ini,
+			'uteis_fim'				=>	$this->uteis_fim,
+			'sabado_ini'			=>	$this->sabado_ini,
+			'sabado_fim'			=>	$this->sabado_fim,
+			'domingo_ini'			=>	$this->domingo_ini,
+			'domingo_fim'			=>	$this->domingo_fim,
+			'feriados_ini'			=>	$this->feriados_ini,
+			'feriados_fim'			=>	$this->feriados_fim,
 		];
 	}
 }

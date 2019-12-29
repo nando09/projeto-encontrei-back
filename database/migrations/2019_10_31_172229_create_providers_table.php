@@ -35,6 +35,16 @@ class CreateProvidersTable extends Migration
 			$table->string('cidade')->nullable();
 			$table->string('estado')->nullable();
 
+			$table->string('photo')->default('products/produto-sem-imagem.png');
+            $table->time('uteis_ini')->nullable();
+            $table->time('uteis_fim')->nullable();
+            $table->time('sabado_ini')->nullable();
+            $table->time('sabado_fim')->nullable();
+            $table->time('domingo_ini')->nullable();
+            $table->time('domingo_fim')->nullable();
+            $table->time('feriados_ini')->nullable();
+            $table->time('feriados_fim')->nullable();
+
             $table->unsignedBigInteger('service_plan_id')->nullable();
             $table->foreign('service_plan_id')
                 ->references('id')

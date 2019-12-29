@@ -27,6 +27,16 @@ class Provider extends Model
 		'cidade',
 		'estado',
 		'user_id',
+		
+        'photo',
+        'uteis_ini',
+        'uteis_fim',
+        'sabado_ini',
+        'sabado_fim',
+        'domingo_ini',
+        'domingo_fim',
+        'feriados_ini',
+        'feriados_fim',
 	];
 
 	public function User(){
