@@ -103,9 +103,13 @@ class ProductController extends Controller
 		$image = $request->file('file');
 
         foreach ($image as $key) {
-            // return $key;
-    		$arquivo = new \DomDocument();
-    // 		$nome = $key->store('excelProduct', 'public');
+            $dataTime = date('Ymd_His');
+    // 		$arquivo = new \DomDocument();
+            $nome = $dataTime . '-' . $key->getClientOriginalName();
+            $savePath = public_path('/upload');
+            $key->move($savePath, $nome);
+            return $nome;
+
     		$arquivo->load($key);
     		return $arquivo;
     		
